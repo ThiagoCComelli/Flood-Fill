@@ -5,6 +5,8 @@ Algorithm to Flood Fill.
   - Python
   - No complex code
   - Beautiful to see
+  
+  ![ezgif com-optimize(1)](https://user-images.githubusercontent.com/51216389/87076088-a2c31c00-c1f7-11ea-9a18-e527bd1198cf.gif)
 
 # Features!
 
