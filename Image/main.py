@@ -13,5 +13,7 @@ while True:
         print(message)
         break
 
+# floor.createImage()
+
 # for i in floor.getFloor():
 #     print(*i)

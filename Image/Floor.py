@@ -4,13 +4,41 @@ import time
 
 class Floor():
     def __init__(self):
-        self.__completed = None
+        self.__completed = False
         self.__width = None
         self.__height = None
-        self.__image = Image.open('Maze4.png')
+        self.__image = Image.open('./mazes/Maze5.png')
+        self.__newImage = None
         self.__floor = []
         self.__actives = []
+        self.__imagesCreated = 0
+        self.__session = 0
+        self.__allImages = []
         self.init()
+    
+    def createImage(self):
+        self.__newImage = Image.new("RGB",(self.__image.size))
+
+        list_of_pixels_another = []
+
+        for i in range(self.__width):
+            for j in range(self.__height):
+                if self.__floor[i][j] == 1:
+                    list_of_pixels_another.append((0,0,0))
+                elif self.__floor[i][j] == 0:
+                    list_of_pixels_another.append((255,255,255))
+                else:
+                    list_of_pixels_another.append((255,0,0))
+        
+        self.__newImage.putdata(list_of_pixels_another)
+        self.__newImage.save(f"./images/{self.__imagesCreated}.png")
+        self.__allImages.append(Image.open(f'./images/{self.__imagesCreated}.png'))
+        self.__imagesCreated += 1
+
+    def createGif(self):
+        self.createImage()
+        name = self.__image.filename.split(".")[-2].split("/")[-1]
+        self.__allImages[0].save(f'./images/{name}.gif',save_all=True,loop=0,append_images=self.__allImages[1:])
     
     def init(self):
         idx = 0
@@ -30,9 +58,9 @@ class Floor():
                     self.__floor[i][j] = 1
                     self.__actives.append(str(i)+" "+str(j))
                 elif values[idx] == (255,0,0):
-                    if(i == 99 and j == 28):
-                        print(values[idx])
-                        break
+                    # if(i == 99 and j == 28):
+                    #     print(values[idx])
+                    #     break
                     element = -2
                 else:
                     element = 0
@@ -54,6 +82,9 @@ class Floor():
     def nextPass(self):
         temp = []
 
+        if(self.__session % 10 == 0):
+            self.createImage()
+
         for i in self.__actives:
             element = i.split(" ")
 
@@ -64,8 +95,9 @@ class Floor():
 
             try:
                 if self.__floor[x+1][y] == -2 or self.__floor[x-1][y] == -2 or self.__floor[x][y+1] == -2 or self.__floor[x][y-1] == -2:
-                    print(f"FINAL ACHIEVED!\n{self.__floor[x][y]+1} steps of distance from start to finish!\n")
-                    self.__completed = True
+                    if self.__completed == False:
+                        print(f"FINAL ACHIEVED!\n{self.__floor[x][y]+1} steps of distance from start to finish!\n")
+                        self.__completed = True
 
                 if self.__floor[x+1][y] == 0 and x+1 >= 0 and x+1 < self.__width:
                     self.__floor[x+1][y] = posNow + 1
@@ -103,11 +135,15 @@ class Floor():
         # print(self.__actives)
         # print(self.__floor[98][28])
 
+        self.__session += 1
+
         if not self.checkFinal():
             return True, ""
         elif self.__completed == True:
+            self.createGif()
             return False, "FINAL ACHIEVED!"
         else:
+            self.createGif()
             return False, "No path to the final!"
 
 
