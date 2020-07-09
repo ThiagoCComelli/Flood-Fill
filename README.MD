@@ -5,6 +5,8 @@ Algorithm to Flood Fill.
   - Python
   - No complex code
   - Beautiful to see
+  
+  ![ezgif com-optimize(1)](https://user-images.githubusercontent.com/51216389/87076088-a2c31c00-c1f7-11ea-9a18-e527bd1198cf.gif)
 
 # Features!
 
@@ -28,6 +30,9 @@ Need:
 ### Executation
 
 Install the dependencies and.. Inside the Floor.py change the variable in constructor to the name and directory of our file.
+
+**THE IMAGE NEED A GREEN PIXEL - RGB COLOR (0,255,0) - TO START THE PROCESS** a red pixel is optionally. (green pixel is the start of Flood)
+
 
 ```sh
 $ cd Image
