@@ -29,7 +29,7 @@ Need:
 
 ### Executation
 
-Install the dependencies and.. Inside folder output, put your image
+Install the dependencies and.. Inside folder mazes, put your image
 
 **THE IMAGE NEED A GREEN PIXEL - RGB COLOR (0,255,0) - TO START THE PROCESS** a red pixel is optionally. (green pixel is the start of Flood)
 
