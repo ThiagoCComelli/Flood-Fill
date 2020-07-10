@@ -3,11 +3,11 @@ import time
 
 
 class Floor():
-    def __init__(self):
+    def __init__(self,file,extension):
         self.__completed = False
         self.__width = None
         self.__height = None
-        self.__image = Image.open('./mazes/Maze5.png')
+        self.__image = Image.open(f'./mazes/{file}.{extension}')
         self.__newImage = None
         self.__floor = []
         self.__actives = []
@@ -38,7 +38,7 @@ class Floor():
     def createGif(self):
         self.createImage()
         name = self.__image.filename.split(".")[-2].split("/")[-1]
-        self.__allImages[0].save(f'./images/{name}.gif',save_all=True,loop=0,append_images=self.__allImages[1:])
+        self.__allImages[0].save(f'./output/{name}.gif',save_all=True,loop=0,append_images=self.__allImages[1:])
     
     def init(self):
         idx = 0

@@ -29,17 +29,17 @@ Need:
 
 ### Executation
 
-Install the dependencies and.. Inside the Floor.py change the variable in constructor to the name and directory of our file.
+Install the dependencies and.. Inside folder output, put your image
 
 **THE IMAGE NEED A GREEN PIXEL - RGB COLOR (0,255,0) - TO START THE PROCESS** a red pixel is optionally. (green pixel is the start of Flood)
 
 
 ```sh
 $ cd Image
-$ python3 main.py
+$ python3 main.py Maze5.png
 ```
 
-And inside of the "./Image/images" will have the "{name_of_your_file}.gif"
+And inside of the "./output" will have the "{name_of_your_file}.gif"
 
 License
 ----
